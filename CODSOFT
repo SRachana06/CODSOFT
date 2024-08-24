@@ -1,0 +1,39 @@
+import sys
+
+tasks = []
+
+def add_task(task):
+    tasks.append(task)
+    print(f'Task "{task}" added.')
+
+def list_tasks():
+    if not tasks:
+        print("No tasks found.")
+    else:
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}. {task}")
+
+def delete_task(task_number):
+    if 0 < task_number and task_number <= len(tasks):
+        removed_task = tasks.pop(task_number - 1)
+        print(f'Task "{removed_task}" deleted.')
+    else:
+        print("Invalid task number.")
+
+def main():
+    while True:
+        command = input("Enter a command (add, list, delete, exit): ")
+        if command == 'add':
+            task = input("Enter the task: ")
+            add_task(task)
+        elif command == 'list':
+            list_tasks()
+        elif command == 'delete':
+            task_number = int(input("Enter the task number to delete: "))
+            delete_task(task_number)
+        elif command == 'exit':
+            break
+        else:
+            print("Invalid command.")
+if __name__ == "__main__":
+    main()
